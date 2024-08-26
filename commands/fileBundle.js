@@ -13,13 +13,13 @@ module.exports = async (fileName) => {
       messages: [
         {
           role: "user",
-          content: `Suggest optimizations or bundle reductions for the file: ${fileName}.`,
+          content: `다음 파일에 대해 최적화나 번들 축소에 대한 제안을 해주세요: ${fileName}.`,
         },
       ],
     });
 
-    console.log(chalk.green('AI suggestion:'), response.choices[0].message.content);
+    console.log(chalk.green('AI 제안:'), response.choices[0].message.content);
   } catch (error) {
-    console.error(chalk.red('Failed to get file bundle suggestions:'), error.message);
+    console.error(chalk.red('파일 번들 제안을 가져오는 데 실패했습니다:'), error.message);
   }
 };
