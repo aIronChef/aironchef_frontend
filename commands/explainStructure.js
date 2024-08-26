@@ -82,14 +82,6 @@ const explainStructureCommand = async (options) => {
 
   if (explanation) {
     console.log(chalk.green('AI 설명:\n'), explanation);
-    const userResponse = await promptUser('제안된 변경 사항을 적용하시겠습니까? (예/아니오): ');
-
-    if (userResponse.toLowerCase() === '예') {
-      console.log(chalk.green('변경 사항을 적용하는 중입니다...'));
-      // 여기에 폴더 구조를 변경하는 로직을 추가할 수 있습니다.
-    } else {
-      console.log(chalk.yellow('변경 사항이 적용되지 않았습니다.'));
-    }
   }
 };
 

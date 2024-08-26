@@ -47,16 +47,16 @@ const generateReadme = async (projectName, projectContent, projectLanguage, proj
           role: 'user',
           content: `다음 정보를 바탕으로 프로젝트 이름이 "${projectName}"인 README.md 파일을 생성해 주세요:
 
-                    1. **프로젝트 구조:** 
+                    1. 프로젝트 구조:
                     ${projectContent.substring(0, 10000)}... (내용이 생략되었습니다) 
 
-                    2. **프로젝트 언어:** 
+                    2. 프로젝트 언어:
                     ${projectLanguage}
 
-                    3. **프로젝트 버전:** 
+                    3. 프로젝트 버전:
                     ${projectVersion}
 
-                    4. **기능 설명:** 
+                    4. 기능 설명:
                     ${projectFeatures}
 
                     README.md 파일을 전문적이고 읽기 쉬운 형식으로 마크다운 형식으로 작성해 주세요. 각 항목은 제목을 붙여서 구분하고, 필요한 경우 하위 항목이나 코드 블록으로 세부 정보를 명확하게 표현해 주세요.`,
