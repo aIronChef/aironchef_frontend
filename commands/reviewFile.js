@@ -17,7 +17,7 @@ module.exports = async (filePath, options) => {
 
     const messages = [
       {"role": "system", "content": "You are a very smart developer in the world ever."},
-      {"role": "user", "content": `${fileContent} 이 파일의 내용을 5줄로 번호를 매겨서 요약해서 리뷰해줘.`},
+      {"role": "user", "content": `${fileContent} 이 파일의 내용을 5줄로 번호를 매겨서 요약해서 리뷰해줘. 추가내용: ${message} 을 보고 참고해줘.`},
     ]
 
     const chatgpt = require('../utils/chatgpt');

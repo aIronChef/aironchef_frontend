@@ -3,6 +3,7 @@ const chalk = require('chalk');
 module.exports = async (feature, lang, manager) => {
   try {
     const messages = [
+      {"role": "system", "content": "You are a very smart developer in the world ever."},
       {
         role: "user",
         content: `너는 ${lang} 언어의 아주 저명한 개발자야. ${feature} 기능을 구현하려고 해. ${lang} 언어를 사용하려고 하는데 괜찮은 패키지 있을까? 설치 명령어를 ${manager} 형식으로 알려줘`,
