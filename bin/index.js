@@ -11,6 +11,8 @@ const fileBundle = require('../commands/fileBundle');
 const recommendPackages = require('../commands/recommendPackages');
 const explainStructureCommand = require('../commands/explainStructure');
 const { generateTestCode, createTestFile, promptUser } = require('../commands/generateTest');
+const recommendFileName = require('../commands/recommendFileName');
+const translateVariable = require('../commands/translateVariable');
 
 program
   .name('aichef')
@@ -96,5 +98,20 @@ program
       console.error('파일을 읽거나 테스트 코드를 생성하는 중 오류가 발생했습니다:', error.message);
     }
   });
+
+// type: snack case, camel case
+// aiche recom-file-name --form "snack case" ./commands/create.js
+program
+.command('recom-file-name <file-name>')
+.description('AI로 파일이름을 추천합니다.')
+.option('-f, --form <form>', 'what type for file name')
+.action(recommendFileName);
+
+// aiche trans-var -f "camel case"  "디렉토리 구조를 트리 형태로 변환하는 함수"
+program
+.command('trans-var <var-name>')
+.description('한국어로 설명된 변수명을 영어로 번역하여 추천합니다.')
+.option('-f, -form <form>', 'what type for variable name')
+.action(translateVariable);
 
 program.parse(process.argv);
