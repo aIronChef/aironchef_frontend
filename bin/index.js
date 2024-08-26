@@ -101,14 +101,14 @@ program
   });
 
 // type: snack case, camel case
-// aiche recom-file-name --form "snack case" ./commands/create.js
+// aichef recom-file-name --form "snack case" ./commands/create.js
 program
 .command('recom-file-name <file-name>')
 .description('AI로 파일이름을 추천합니다.')
 .option('-f, --form <form>', 'what type for file name')
 .action(recommendFileName);
 
-// aiche trans-var -f "camel case"  "디렉토리 구조를 트리 형태로 변환하는 함수"
+// aichef trans-var -f "camel case"  "디렉토리 구조를 트리 형태로 변환하는 함수"
 program
 .command('trans-var <var-name>')
 .description('한국어로 설명된 변수명을 영어로 번역하여 추천합니다.')
