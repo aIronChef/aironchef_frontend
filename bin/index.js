@@ -13,6 +13,7 @@ const explainStructureCommand = require('../commands/explainStructure');
 const { generateTestCode, createTestFile, promptUser } = require('../commands/generateTest');
 const recommendFileName = require('../commands/recommendFileName');
 const translateVariable = require('../commands/translateVariable');
+const { generateReadmeCommand } = require('../commands/generateReadme'); 
 
 program
   .name('aichef')
@@ -114,4 +115,15 @@ program
 .option('-f, -form <form>', 'what type for variable name')
 .action(translateVariable);
 
+program
+  .command('generate-readme')
+  .description('프로젝트의 모든 파일을 기반으로 README.md 파일을 생성합니다.')
+  .action(async () => {
+    try {
+      await generateReadmeCommand();
+    } catch (err) {
+      console.error(chalk.red('명령어 실행 중 오류 발생:'), err.message);
+    }
+  });
+  
 program.parse(process.argv);
