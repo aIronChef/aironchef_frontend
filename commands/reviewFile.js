@@ -1,12 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
-const OpenAI = require('openai');
-require('dotenv').config();  // .env 파일의 환경 변수를 로드
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // .env 파일에서 API 키 설정
-});
 
 module.exports = async (filePath, options) => {
   const { message } = options;
@@ -19,20 +13,21 @@ module.exports = async (filePath, options) => {
 
     // 파일 내용 읽기
     const fileContent = fs.readFileSync(filePath, 'utf-8');
+    console.log(`split: ${filePath.split('.')[1]}`);
 
-    // AI에게 코드 리뷰 요청
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "user",
-          content: `Please review the following code. Here is additional context: ${message}\n\nCode:\n${fileContent}`,
-        },
-      ],
+    const messages = [
+      {"role": "system", "content": "You are a very smart developer in the world ever."},
+      {"role": "user", "content": `${fileContent} 이 파일의 내용을 5줄로 번호를 매겨서 요약해서 리뷰해줘.`},
+    ]
+
+    const chatgpt = require('../utils/chatgpt');
+    chatgpt.callChatgptApi(messages).then(response => {
+      console.log(`AI suggestion: ${response}`);
+    }).catch(error => {
+        console.error(error);
     });
 
-    // AI 응답 출력
-    console.log(chalk.green('AI review response:'), response.choices[0].message.content);
+
   } catch (error) {
     console.error(chalk.red('Failed to review file:'), error.message);
   }
